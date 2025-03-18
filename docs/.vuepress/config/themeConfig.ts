@@ -55,7 +55,7 @@ export default <VdoingThemeConfig >{
     // 文章默认的作者信息，(可在md文件中单独配置此信息) string | {name: string, link?: string}
     author: {
       name: 'Power', // 必需
-      link: 'https://github.com/ProgramLpw', // 可选的
+      link: 'https://github.com/0xiPower', // 可选的
     },
 
     // 博主信息 (显示在首页侧边栏)
@@ -77,7 +77,7 @@ export default <VdoingThemeConfig >{
             {
                 iconClass: 'icon-github',
                 title: 'GitHub',
-                link: 'https://github.com/ProgramLpw',
+                link: 'https://github.com/0xiPower',
             },
             {
                 iconClass: 'icon-twitter',
