@@ -28,7 +28,7 @@ export default [
         ],
     },
 
-    { text: '更多',
+    { text: '更多', link: '/more/',
         items: [
             { text: '友情链接', link: '/friends/' },
         ]
