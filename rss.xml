@@ -1,4 +1,215 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>☯️xPower</title><description>Life is a fxxking movie.</description><link>https://newpower.pro/</link><language>zh_CN</language><item><title>Arbitrum Stylus 全方位解析：核心竞争力与实践教程</title><link>https://newpower.pro/posts/blockchain/arbitrum/arbitrumstylustutorial/</link><guid isPermaLink="true">https://newpower.pro/posts/blockchain/arbitrum/arbitrumstylustutorial/</guid><description>深度解析 Arbitrum Stylus 的核心技术优势，包括多语言支持、性能跃升、Gas 成本降低、扩展性及模块化架构，并提供实践教程与未来展望。</description><pubDate>Sun, 11 May 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在区块链开发领域，智能合约的技术瓶颈长期困扰着开发者：Solidity 单一语言生态的封闭性、EVM 计算效率的天花板、高昂的 Gas 费用，如同三重枷锁限制着 Web3 应用的创新边界。2023 年，Arbitrum 推出的 Stylus 技术打破了这一僵局，通过多语言支持、极致性能优化、Gas 成本锐减、无缝扩展性与模块化架构，为智能合约开发开启了全新维度。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>☯️xPower</title><description>Life is a fxxking movie.</description><link>https://newpower.pro/</link><language>zh_CN</language><item><title>震惊！这门国产编程语言竟能一招搞定全场景！开发者：学不会就OUT了！！</title><link>https://newpower.pro/posts/document/%E4%BB%93%E9%A2%89%E8%AF%AD%E6%B3%95%E5%B0%8F%E6%89%8B%E5%86%8C/</link><guid isPermaLink="true">https://newpower.pro/posts/document/%E4%BB%93%E9%A2%89%E8%AF%AD%E6%B3%95%E5%B0%8F%E6%89%8B%E5%86%8C/</guid><description>仓颉编程语言是一款面向全场景智能的新一代编程语言，主打原生智能化、天生全场景、高性能、强安全。融入鸿蒙生态，为开发者提供良好的编程体验。全方位的编译优化和运行时实现、以及开箱即用的 IDE 工具链支持，为开发者打造友好开发体验和卓越程序性能。</description><pubDate>Mon, 12 May 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;我是一名仓颉编程语言的体验官, 从仓颉编程语言上线公测后, 一直有使用, 练习时长0.4*两年半。&lt;br /&gt;
+正如标题所说, 仓颉编程语言是一款面向全场景智能的新一代编程语言, 主打原生智能化、天生全场景、高性能、强安全。融入鸿蒙生态，为开发者提供良好的编程体验。全方位的编译优化和运行时实现、以及开箱即用的 IDE 工具链支持，为开发者打造友好开发体验和卓越程序性能。&lt;br /&gt;
+它汲取了C语言的简洁高效、Java的面向对象特性、Go语言的并发处理优势、Rust的内存安全机制以及Python的易读易写风格。&lt;br /&gt;
+当然, 新编程语言的诞生总免不了遭到谩骂唾弃, 但这是一款国产编程语言, 纵使其目前还不太行, 但作为一名Cn Coder, 没有理由不支持不尝试。&lt;br /&gt;
+是的, &quot;有剑不用&quot;和&quot;没有剑用&quot; 两者的背后深意很大, 纵使&quot;花厂&quot;在互联网上的名声可能不太好, 但起码这家伙确确实实在一步一步的抬高国内计算机技术的竞争力, 这一点不可否认。&lt;br /&gt;
+在一定的极端情况下,  起码不受制于人。至于未来开不开源搞收费圈米, 那都另一回事了, 起码, 这是一个好兆头。&lt;/p&gt;
+&lt;h2&gt;初识 &lt;code&gt;仓颉&lt;/code&gt; 编程语言&lt;/h2&gt;
+&lt;p&gt;仓颉编程语言是一种面向全场景应用开发的编程语言, 可以兼顾开发效率和运行性能, 提供良好的编程体验。&lt;/p&gt;
+&lt;p&gt;举个栗子:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from net import http.ServerBuilder, http.FuncHandler
+main() {
+    let server = ServerBuilder().addr(&quot;127.0.0.1&quot;).port(8080).build()
+    server.distributor.register(&quot;/index&quot;, FuncHandler({httpContext =&amp;gt; 
+        httpContext.responseBuilder.body(&quot;Hello, Cangjie!&quot;)
+    }))
+    server.serve()
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;仓颉编程语言特性&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;语法简洁高效&lt;/li&gt;
+&lt;li&gt;多范式编程&lt;/li&gt;
+&lt;li&gt;类型安全&lt;/li&gt;
+&lt;li&gt;内存安全&lt;/li&gt;
+&lt;li&gt;高效并发&lt;/li&gt;
+&lt;li&gt;兼容语言生态&lt;/li&gt;
+&lt;li&gt;领域易拓展&lt;/li&gt;
+&lt;li&gt;助力UI开发&lt;/li&gt;
+&lt;li&gt;内置库功能丰富&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;环境配置及运行第一个仓颉程序&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;安装仓颉编程语言
+&lt;ul&gt;
+&lt;li&gt;访问 &lt;a href=&quot;https://cangjie-lang.cn/docs&quot;&gt;仓颉编程语言官网文档&lt;/a&gt; 下载最新版本的安装包。&lt;/li&gt;
+&lt;li&gt;根据操作系统的不同，选择相应的安装方式进行安装。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;配置环境变量
+&lt;ul&gt;
+&lt;li&gt;将仓颉编程语言的安装目录添加到系统的环境变量中，以便在命令行中直接使用 &lt;code&gt;cjc&lt;/code&gt; 命令。&lt;/li&gt;
+&lt;li&gt;在控制台中输入 &lt;code&gt;cjc -v&lt;/code&gt; 命令，检查是否安装成功。&lt;/li&gt;
+&lt;li&gt;如果安装成功，控制台会输出仓颉编程语言的版本信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;创建第一个仓颉程序&lt;/h3&gt;
+&lt;p&gt;首先, 请在适当目录下新建一个名为&lt;code&gt;hello.cj&lt;/code&gt;的文本文件, 并向文件中写入以下仓颉代码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    println(&quot;Hello, Cangjie!&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后, 请在此目录下执行如下命令:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cjc hello.cj -o hello
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里仓颉编辑器会将&lt;code&gt;hello.cj&lt;/code&gt;中的源代码编译为此平台上的可执行文件&lt;code&gt;hello&lt;/code&gt;,在命令行环境中运行此文件, 您将看到程序输出了如下内容:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Hello, Cangjie!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;温馨提示&lt;/strong&gt;
+以上编译命令是针对Linux/macOS 平台的, 如果在 Windows 平台上使用仓颉编程语言, 请将 &lt;code&gt;hello&lt;/code&gt; 替换为 &lt;code&gt;hello.exe&lt;/code&gt;。&lt;/p&gt;
+&lt;h2&gt;标识符&lt;/h2&gt;
+&lt;p&gt;仓颉编程语言的标识符由字母、数字和下划线组成，且必须以字母或下划线开头。标识符是区分大小写的, 标识符分为&lt;code&gt;普通标识符&lt;/code&gt;和&lt;code&gt;原始标识符&lt;/code&gt;两种类型, 它们分别遵从不同的命名规则。&lt;/p&gt;
+&lt;h3&gt;普通标识符&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;普通标识符&lt;/code&gt;不能和仓颉关键字相同, 可以取自以下两类字符序列:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;由英文字母开头, 后接零至多个英文字母、数字或下划线&lt;/li&gt;
+&lt;li&gt;由一至多个下划线&lt;code&gt;_&lt;/code&gt;开头, 后接一个英文字母, 最后可接零至多个英文字母、数字或下划线&lt;code&gt;_&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;合法的普通标识符&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;abc
+_abc
+abc_
+a1b2c3
+a_b_c
+a1_b2_c3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;不合法的普通标识符&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;ab&amp;amp;c    // 使用了非法字符 &quot;&amp;amp;&quot;
+_123    // 起始下划线 &quot;_&quot; 后不能接数字
+3abc    // 数字不能出现在头部
+while   // 不能使用仓颉关键字
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;原始标识符&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;原始标识符&lt;/code&gt;是以反引号` ` 开头和结尾的字符序列, 反引号内的字符序列可以包含任何字符, 但不能包含反引号本身。&lt;/p&gt;
+&lt;h4&gt;合法的原始标识符&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;`abc`
+`_abc`
+`a1b2c3`
+`if`
+`while`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;不合法的原始标识符&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;`ab&amp;amp;c`
+`_123`
+`3abc`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;变量&lt;/h2&gt;
+&lt;p&gt;在仓颉编程语言中, 一个变量由对应的变量名、数据(值)和若干属性构成, 开发者通过变量名访问变量对应的数据, 但访问操作需要遵从相关属性的约束(如数据类型、可变性和可见性等)&lt;/p&gt;
+&lt;p&gt;变量定义的具体形式为: &lt;code&gt;修饰符&lt;/code&gt;  &lt;code&gt;变量名&lt;/code&gt;: &lt;code&gt;变量类型&lt;/code&gt; = &lt;code&gt;初始值&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;其中&lt;code&gt;修饰符&lt;/code&gt;用于设置变量的各类属性, 可以有一个或多个, 常用的修饰符包括:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可变性修饰符: let 或 var, 分别对应不可变和可变属性, 可变性决定了变量被初始化后其值还能否改变, 仓颉变量也由此分为不可变变量和可变变量两类。&lt;/li&gt;
+&lt;li&gt;可见性修饰符: private 和 public 等, 影响全局变量和成员变量的可引用范围, 可见性修饰符决定了变量的作用域, 影响变量的可见性和访问权限。&lt;/li&gt;
+&lt;li&gt;静态性修饰符: static, 影响成员变量的存储和引用方式, 静态变量在类加载时被初始化, 其生命周期与类的生命周期相同, 而非静态变量在每次实例化对象时被初始化, 其生命周期与对象的生命周期相同。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在定义仓颉变量时, 可变性修饰符是必要的, 在此基础上, 还可以根据需要添加其他修饰符&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;变量名&lt;/code&gt;应是一个合法的仓颉标识符。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;变量类型&lt;/code&gt;指定了变量所持有数据的类型。当初始值具有明确类型时, 可以省略变量类型标注, 此时编译器可以自动推断出变量类型。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;初始值&lt;/code&gt;是一个仓颉表达式, 用于初始化变量, 如果标注了变量类型, 需要保证初始值类型和变量类型一致。在定义全局变量或静态成员变量时, 必须指定初始值。在定义局部变量或实例成员变量时, 可以省略初始值, 但需要标注变量类型, 同时要在此变量被引用前完成初始化, 否则编译会错误。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;来看一个例子: 定义了两个Int64类型的不可变变量a和可变变量b,随后修改了变量b的值, 并调用printlc函数打印a与b的值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let a: Int64 = 20
+    var b: Int64 = 12
+    b = 23
+    println(&quot;${a}${b}&quot;)                 // 2023
+    println(&quot;a = ${a}&quot;, &quot;, b = ${b}&quot;)   // a = 20, b = 23
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果尝试修改不可变变量, 编译时会报错&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let pi: Float64 = 3.14159265
+    pi = 2.71828 // 错误: pi是不可变变量, 不能被修改
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当初始值具有明确类型时, 可以省略变量类型标注&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let a: Int64 = 2023
+    let b = a
+    println(&quot;a - b = ${a - b}&quot;)
+}
+// result: a - b = 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中变量b的类型可以由其初值a的类型自动推断为Int64, 所以此程序也可以被正常编译和运行, 将输出&lt;code&gt;a - b = 0&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在定义局部变量时, 可以不进行初始化, 但一定要在变量被引用前赋予初值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let text: String
+    text = &quot;仓颉造字&quot; // Cangjie
+    println(text)
+}
+// result: 仓颉造字
+// TODO: 可能会出现乱码情况, 这是编码问题
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在定义全局变量和静态成员变量时必须初始化, 否则编译会报错&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// example.cj
+let global: Int64 // Error, variable in top-level scope must be
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;if 表达式&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;if&lt;/code&gt; 表达式的基本形式为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (条件 1) {
+    分支 1
+} else if (条件 2) {
+    分支 2
+} else {
+    分支 3
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中&quot;条件&quot;是布尔类型表达式, &quot;分支 1&quot;和&quot;分支 2&quot;是两个代码块。&lt;code&gt;if&lt;/code&gt; 表达式将按如下规则执行&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;计算&quot;条件 1&quot;表达式, 如果值为&lt;code&gt;true&lt;/code&gt;则执行&quot;分支 1&quot;, 值为&lt;code&gt;false&lt;/code&gt;则跳到 else if 判断计算&quot;条件 2&quot;或 else 判断&lt;/li&gt;
+&lt;li&gt;执行&quot;分支 x&quot;, 然后跳出&lt;code&gt;if&lt;/code&gt;表达式&lt;/li&gt;
+&lt;li&gt;继续执行&lt;code&gt;if&lt;/code&gt;表达式后面的代码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在一些场景中, 我们可能只关注条件成立时该做些什么, 所以&lt;code&gt;else&lt;/code&gt;和对应的代码块是允许省略的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from std import random.*
+main() {
+    let number: Int8 = Random().nextInt8()
+    println(number)
+    if (number %2 == 0) {
+        println(&quot;even&quot;)
+    } else {
+        println(&quot;odd&quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在这段程序中, 我们使用了仓颉标准库的&lt;code&gt;random&lt;/code&gt;包生成了一个随机数, 然后使用&lt;code&gt;if&lt;/code&gt;表达式判断这个整数是否能被2整除, 并在不同的条件分支中打印&quot;偶数&quot;或&quot;奇数&quot;&lt;/p&gt;
+&lt;p&gt;仓颉编程语言是强类型的, &lt;code&gt;if&lt;/code&gt;表达式的条件只能是布尔类型, 不能使用整数或浮点数等类型, 和C语言不同, 仓颉不以条件取值是否为0作为分支选择依据, 否则会报错&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let number = 1
+    if (number) {           // error: mismatched types
+        println(&quot;非零&quot;)
+    } 
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在许多场景中, 当一个条件不成立时, 我们可能还要判断另一个或多个条件、在执行对应的动作, 仓颉允许在&lt;code&gt;else&lt;/code&gt; 之后跟随新的&lt;code&gt;if&lt;/code&gt;表达式, 由此支持多级条件判断和分支执行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from std import random.*
+main() {
+    let speed = Random(). nextFloat64() * 20.0
+    println(&quot;${speed} km/s&quot;)
+    if (speed &amp;gt; 16.7) {
+        println(&quot;第三宇宙速度, 鹊桥相会&quot;)
+    } else if (speed &amp;gt; 11.2) {
+        println(&quot;第二宇宙速度, 嫦娥奔月&quot;)
+    } else if (speed &amp;gt; 7.9) {
+        println(&quot;第一宇宙速度, 腾云驾雾&quot;)
+    } else {
+        println(&quot;脚踏实地, 仰望星空&quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;温馨提示&lt;/strong&gt;
+下列print、println、eprint、eprintln函数默认为UTF-8编码, windows环境需要手动执行命令&lt;code&gt;chcp 65001&lt;/code&gt;(将cmd更改为UTF-8编码)。&lt;/p&gt;
+&lt;h2&gt;更多资源搜索&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://cangjie-lang.cn&quot;&gt;仓颉编程语言官网&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.huawei.com/consumer/cn/&quot;&gt;华为开发者联盟&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gitcode.com/Cangjie&quot;&gt;GitCode 仓颉&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=IDE-Innovation-Lab.cangjie&quot;&gt;Cangjie Vscode插件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded></item><item><title>Arbitrum Stylus 全方位解析：核心竞争力与实践教程</title><link>https://newpower.pro/posts/blockchain/arbitrum/arbitrumstylustutorial/</link><guid isPermaLink="true">https://newpower.pro/posts/blockchain/arbitrum/arbitrumstylustutorial/</guid><description>深度解析 Arbitrum Stylus 的核心技术优势，包括多语言支持、性能跃升、Gas 成本降低、扩展性及模块化架构，并提供实践教程与未来展望。</description><pubDate>Sun, 11 May 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在区块链开发领域，智能合约的技术瓶颈长期困扰着开发者：Solidity 单一语言生态的封闭性、EVM 计算效率的天花板、高昂的 Gas 费用，如同三重枷锁限制着 Web3 应用的创新边界。2023 年，Arbitrum 推出的 Stylus 技术打破了这一僵局，通过多语言支持、极致性能优化、Gas 成本锐减、无缝扩展性与模块化架构，为智能合约开发开启了全新维度。&lt;/p&gt;
 &lt;p&gt;Arbitrum Stylus 是 Arbitrum 网络中的一项新型功能，旨在为智能合约开发者提供更灵活、更高性能的工具。它打破了传统 EVM 框架中只能使用 Solidity 的限制，使得开发者可以借助多种编程语言（如 C、C++、Rust 等）在 Arbitrum 上编写合约，从而提升可扩展性与开发效率。根据官方文档和不同社区的测试，Stylus 在性能和资源利用率方面具有显著优势，引起了广泛关注。&lt;/p&gt;
 &lt;p&gt;本文将结合官方资料和社区经验，深度解析 Stylus 如何重塑行业规则，并为读者提供一份详尽的使用指南与未来展望。&lt;/p&gt;
 &lt;h2&gt;一、Arbitrum Stylus：重新定义智能合约的核心竞争力&lt;/h2&gt;
