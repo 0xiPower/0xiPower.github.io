@@ -202,6 +202,147 @@ main() {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;温馨提示&lt;/strong&gt;
 下列print、println、eprint、eprintln函数默认为UTF-8编码, windows环境需要手动执行命令&lt;code&gt;chcp 65001&lt;/code&gt;(将cmd更改为UTF-8编码)。&lt;/p&gt;
+&lt;h2&gt;while 表达式&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;while&lt;/code&gt; 表达式的基本形式为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;while (条件) {
+    循环体
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中&quot;条件&quot;是布尔类型表达式, &quot;循环体&quot;是一个代码块。&lt;code&gt;while&lt;/code&gt; 表达式将按如下规则执行&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;计算&quot;条件&quot;表达式, 如果值为&lt;code&gt;true&lt;/code&gt;则执行&quot;循环体&quot;, 值为&lt;code&gt;false&lt;/code&gt;则跳出&lt;code&gt;while&lt;/code&gt;表达式&lt;/li&gt;
+&lt;li&gt;执行&quot;循环体&quot;, 然后跳回第1步&lt;/li&gt;
+&lt;li&gt;继续执行&lt;code&gt;while&lt;/code&gt;表达式后面的代码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以下程序使用&lt;code&gt;while&lt;/code&gt;表达式, 输出数字 0 到 10&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    var num: Int64 = 0
+    while (num &amp;lt;= 10) {
+        println(num)
+        num++
+    }
+    println(&quot;while执行完毕&quot;)
+}
+
+## do-while 表达式
+`do-while` 表达式的基本形式为
+
+```Cangjie
+do {
+    循环体
+} while (条件)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中&quot;条件&quot;是布尔类型表达式, &quot;循环体&quot;是一个代码块。&lt;code&gt;do-while&lt;/code&gt; 表达式将按如下规则执行&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;执行&quot;循环体&quot;, 转第2步&lt;/li&gt;
+&lt;li&gt;计算&quot;条件&quot;表达式, 如果值为&lt;code&gt;true&lt;/code&gt;则跳回第1步, 值为&lt;code&gt;false&lt;/code&gt;则跳出&lt;code&gt;do-while&lt;/code&gt;表达式&lt;/li&gt;
+&lt;li&gt;继续执行&lt;code&gt;do-while&lt;/code&gt;表达式后面的代码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以下程序使用&lt;code&gt;do-while&lt;/code&gt;表达式, 输出数字 0 到 10&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    var num: Int64 = 0
+    do {
+        println(num)
+        num++
+    } while (num &amp;lt;= 10)
+    println(&quot;do-while执行完毕&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;for-in 表达式&lt;/h2&gt;
+&lt;p&gt;for-in 表达式可以遍历那些扩展了迭代器接口iterable&amp;lt;T&amp;gt;的类型实例&lt;/p&gt;
+&lt;p&gt;for-in 表达式的基本形式为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (迭代变量 in 序列) {
+    循环体
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中&quot;循环体&quot;是一个代码块, &quot;迭代变量&quot;用于绑定每轮遍历中由迭代器指向的数据, 可以作为&quot;循环体&quot;中的局部变量使用。&quot;序列&quot;是一个表达式, 目前我们理解为一组数据, 例如&lt;code&gt;[&quot;张三&quot;, &quot;李四&quot;, &quot;王五&quot;]&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;计算&quot;序列&quot;表达式, 将其值作为遍历对象, 并初始化遍历对象的迭代器。&lt;/li&gt;
+&lt;li&gt;更新迭代器, 如果迭代器终止, 转第4步, 否则转第3步&lt;/li&gt;
+&lt;li&gt;将当前迭代器指向的数据与&quot;迭代变量&quot;绑定, 并执行&quot;循环体&quot;, 转第2步。&lt;/li&gt;
+&lt;li&gt;结束循环, 继续执行for-in表达式后面的代码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;        [开始]
+          |
+          v
+       /       \
+      /  遍历是  \
+     /   否结束   \
+    |             |
+    | YES         | NO
+    v             v
+  [结束]       [print(i)]
+                  |
+                  ------------|
+                              |
+                              v
+                         回到判断条件
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let userName = [&quot;张三&quot;, &quot;李四&quot;, &quot;王五&quot;]
+    for (name in userName) {
+        print(name)
+    }
+}
+// result: 张三李四王五
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;遍历区间&lt;/h3&gt;
+&lt;p&gt;for-in 表达式可以遍历区间类型实例
+区间的格式是 &lt;code&gt;start..=end:step&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1..=100 // 表示从1~100的数字
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;利用for-in表达式完成从0+...100的数字和&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    var num = 0
+    for (i in 1..=100) {
+        sum += i
+    }
+    println(&quot;sum = ${sum}&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;迭代变量不可修改&lt;/h3&gt;
+&lt;p&gt;在 for-in 表达式的循环体中, 不能修改迭代变量, 例如以下程序在编译时会报错:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    for (i in 0..5){
+        i = i * 10 // error: cannot assign to immutable value
+        println(i)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;where 条件&lt;/h3&gt;
+&lt;p&gt;在部分循环遍历场景中, 对于特定取值的迭代变量, 我们可能需要直接跳过, 进入下一轮循环, 仓颉为此提供了更便捷的表达方式--可以在所遍历的&quot;序列&quot;之后用where关键字引导一个布尔表达式, 这样在每次将进入循环体执行前, 会先计算此表达式, 如果值为true则执行循环体, 反之直接进入下一轮循环&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    for (i in 0..8 where i % 2 == 1) {  // i 为奇数时才会执行循环体
+        println(&quot;i = ${i}&quot;)
+    }
+}
+// result: 1 3 5 7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;break 与 continue 表达式&lt;/h2&gt;
+&lt;p&gt;在循环结构的程序中, 有时我们需要根据特定条件提前结束循环或跳过本轮循环, 为此仓颉引入了&lt;code&gt;break&lt;/code&gt;与&lt;code&gt;continue&lt;/code&gt;表达式, 它们可以出现在循环表达式的循环体中, break用于终止当前循环表达式的执行、转去执行循环表达式后面的代码, continue用于跳过本轮循环, 直接转去执行下一轮循环&lt;/p&gt;
+&lt;p&gt;例如, 以下程序使用for-in表达式和break表达式, 在给定的整数数组中, 找到第一个能被5整除的数字:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    for (number in numbers) {
+        if (number % 5 == 0) {
+            println(&quot;第一个能被5整除的数字是: ${number}&quot;)
+            break
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以下程序使用for-in表达式和continue表达式, 将给定的整数数组中的奇数打印出来:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let numbers = [12, 18, 25, 36, 49, 55]
+    for (number in numbers) {
+        if (number % 2 == 0) {
+            continue  // 如果是偶数, 跳过本轮循环
+        }
+        println(&quot;奇数: ${number}&quot;)
+    }
+}
+// result: 奇数: 25 奇数: 49 奇数: 55
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;更多资源搜索&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://cangjie-lang.cn&quot;&gt;仓颉编程语言官网&lt;/a&gt;&lt;/li&gt;
