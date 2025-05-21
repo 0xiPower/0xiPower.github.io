@@ -57,7 +57,7 @@ main() {
 &lt;p&gt;这里仓颉编辑器会将&lt;code&gt;hello.cj&lt;/code&gt;中的源代码编译为此平台上的可执行文件&lt;code&gt;hello&lt;/code&gt;,在命令行环境中运行此文件, 您将看到程序输出了如下内容:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Hello, Cangjie!
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;温馨提示&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;温馨提示&lt;/strong&gt;&lt;br /&gt;
 以上编译命令是针对Linux/macOS 平台的, 如果在 Windows 平台上使用仓颉编程语言, 请将 &lt;code&gt;hello&lt;/code&gt; 替换为 &lt;code&gt;hello.exe&lt;/code&gt;。&lt;/p&gt;
 &lt;h2&gt;标识符&lt;/h2&gt;
 &lt;p&gt;仓颉编程语言的标识符由字母、数字和下划线组成，且必须以字母或下划线开头。标识符是区分大小写的, 标识符分为&lt;code&gt;普通标识符&lt;/code&gt;和&lt;code&gt;原始标识符&lt;/code&gt;两种类型, 它们分别遵从不同的命名规则。&lt;/p&gt;
@@ -200,7 +200,7 @@ main() {
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;温馨提示&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;温馨提示&lt;/strong&gt;&lt;br /&gt;
 下列print、println、eprint、eprintln函数默认为UTF-8编码, windows环境需要手动执行命令&lt;code&gt;chcp 65001&lt;/code&gt;(将cmd更改为UTF-8编码)。&lt;/p&gt;
 &lt;h2&gt;while 表达式&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;while&lt;/code&gt; 表达式的基本形式为&lt;/p&gt;
@@ -342,6 +342,248 @@ do {
     }
 }
 // result: 奇数: 25 奇数: 49 奇数: 55
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;基本数据类型&lt;/h2&gt;
+&lt;p&gt;仓颉中的基本数据类型, 包括: 整数类型、浮点类型、布尔类型、字符类型、字符串类型、&lt;code&gt;Unit&lt;/code&gt;类型、元组类型、区间类型、&lt;code&gt;Nothing&lt;/code&gt;类型&lt;/p&gt;
+&lt;h3&gt;整数类型&lt;/h3&gt;
+&lt;p&gt;整数类型分为有符号 (signed) 整数类型和无符号 (unsigned) 整数类型&lt;br /&gt;
+&lt;strong&gt;有符号整数类型&lt;/strong&gt;: &lt;code&gt;Int8&lt;/code&gt;、&lt;code&gt;Int16&lt;/code&gt;、&lt;code&gt;Int32&lt;/code&gt;、&lt;code&gt;Int64&lt;/code&gt;&lt;br /&gt;
+&lt;strong&gt;无符号整数类型&lt;/strong&gt;: &lt;code&gt;UInt8&lt;/code&gt;、&lt;code&gt;UInt16&lt;/code&gt;、&lt;code&gt;UInt32&lt;/code&gt;、&lt;code&gt;UInt64&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;下表列出了所有整数类型的表示范围&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;表示范围&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Int8&lt;/td&gt;
+&lt;td&gt;-2&amp;lt;sup&amp;gt;7&amp;lt;/sup&amp;gt; ~ 2&amp;lt;sup&amp;gt;7&amp;lt;/sup&amp;gt;-1 (-128 ~ 127)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Int16&lt;/td&gt;
+&lt;td&gt;-2&amp;lt;sup&amp;gt;15&amp;lt;/sup&amp;gt; ~ 2&amp;lt;sup&amp;gt;15&amp;lt;/sup&amp;gt;-1 (-32,768 ~ 32,767)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Int32&lt;/td&gt;
+&lt;td&gt;-2&amp;lt;sup&amp;gt;31&amp;lt;/sup&amp;gt; ~ 2&amp;lt;sup&amp;gt;31&amp;lt;/sup&amp;gt;-1 (-2,147,483,648 ~ 2,147,483,647)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Int64&lt;/td&gt;
+&lt;td&gt;-2&amp;lt;sup&amp;gt;63&amp;lt;/sup&amp;gt; ~ 2&amp;lt;sup&amp;gt;63&amp;lt;/sup&amp;gt;-1 (-9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;UInt8&lt;/td&gt;
+&lt;td&gt;0 ~ 2&amp;lt;sup&amp;gt;8&amp;lt;/sup&amp;gt;-1 (0 ~ 255)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;UInt16&lt;/td&gt;
+&lt;td&gt;0 ~ 2&amp;lt;sup&amp;gt;16&amp;lt;/sup&amp;gt;-1 (0 ~ 65,535)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;UInt32&lt;/td&gt;
+&lt;td&gt;0 ~ 2&amp;lt;sup&amp;gt;32&amp;lt;/sup&amp;gt;-1 (0 ~ 4,294,967,295)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;UInt64&lt;/td&gt;
+&lt;td&gt;0 ~ 2&amp;lt;sup&amp;gt;64&amp;lt;/sup&amp;gt;-1 (0 ~ 18,446,744,073,709,551,615)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;程序具体使用哪种整数类型, 取决于该程序中需要处理的整数的性质和范围。在&lt;code&gt;Int64&lt;/code&gt;类型适合的情况下, 首选&lt;code&gt;Int64&lt;/code&gt;类型, 因为&lt;code&gt;int64&lt;/code&gt;的表示范围足够大, 并且整数字面量在没有类型上下文的情况下默认推断为&lt;code&gt;Int64&lt;/code&gt;类型, 可以避免不必要的类型转换&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let a = 100
+    pring(a is Int64)
+}
+// result: true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;整数类型字面量&lt;/h4&gt;
+&lt;p&gt;整数类型字面量有 4 种进制表示形式: 二进制 (使用0b 或 0B 前缀)、八进制 (使用0o 或 0O 前缀)、十进制 (不使用前缀) 和十六进制 (使用0x 或 0X 前缀)。例如, 对于十进制数 24, 表示成二进制是 0b00011000 (或 0B00011000)、八进制是 0o30 (或 0O30)、十六进制是 0x18 (或 0X18)。&lt;br /&gt;
+在使用整数类型时, 可以通过加入后缀来明确整数字面量的类型, 后缀于类型的对应为&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;后缀&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;后缀&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;u8&lt;/td&gt;
+&lt;td&gt;UInt8&lt;/td&gt;
+&lt;td&gt;i8&lt;/td&gt;
+&lt;td&gt;Int8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;u16&lt;/td&gt;
+&lt;td&gt;UInt16&lt;/td&gt;
+&lt;td&gt;i16&lt;/td&gt;
+&lt;td&gt;Int16&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;u32&lt;/td&gt;
+&lt;td&gt;UInt32&lt;/td&gt;
+&lt;td&gt;i32&lt;/td&gt;
+&lt;td&gt;Int32&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;u64&lt;/td&gt;
+&lt;td&gt;UInt64&lt;/td&gt;
+&lt;td&gt;i64&lt;/td&gt;
+&lt;td&gt;Int64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code&gt;var x = 100i8   // x is 100 with type Int8
+var y = 16u64   // y is 16 with type UInt64
+var z = 282i32  // z is 282 with type Int32
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;浮点类型&lt;/h3&gt;
+&lt;p&gt;浮点类型包括 Float16、Float32 和 Float64&lt;/p&gt;
+&lt;p&gt;Float64 的精度约为小数点后 15 位, Float32 的精度约为小数点后 6位, Float16 的精度约为小数点后 3 位。使用哪种浮点类型, 取决于代码中需要处理的浮点数的性质和范围。在多种浮点类型都适合的情况下, 首选精度高的浮点类型, 因为精度低的浮点类型的累计计算误差很容易扩散, 并且它能精确表示的整数范围也很有限&lt;/p&gt;
+&lt;h4&gt;浮点类型字面量&lt;/h4&gt;
+&lt;p&gt;浮点类型字面量有两种进制表示形式: 十进制、十六进制。在十进制表示中, 一个浮点字面量至少要包含一个整数部分或一个小数部分, 没有小数部分时必须包含指数部分 (以 e 或 E 为前缀, 底数为 10)。在十六进制表示中, 一个浮点字面量除了至少要包含一个整数部分或一个小数部分 (以 0x 或 0X 为前缀), 同时必须包含指数部分 (以 p 或 P 为前缀, 底数为 2)。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let a: Float32 = 3.14
+let b: Float32 = 2e3
+let c: Float32 = 2.4e-1
+let d: Float32 = 0x1p2
+let e: Float64 = 0x2p4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在使用浮点数时, 可以通过加入后缀来明确浮点字面量的类型, 后缀与类型的对应为&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;后缀&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;后缀&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;后缀&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;f16&lt;/td&gt;
+&lt;td&gt;Float16&lt;/td&gt;
+&lt;td&gt;f32&lt;/td&gt;
+&lt;td&gt;Float32&lt;/td&gt;
+&lt;td&gt;f64&lt;/td&gt;
+&lt;td&gt;Float64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code&gt;let a = 3.14f16     // a is 3.14 with type Float16
+let b = 2e3f32      // b is 2e3 with type Float32
+let c = 2.4e-1f64   // c is 2.4e-1 with type Float64
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;布尔类型&lt;/h3&gt;
+&lt;p&gt;布尔类型使用&lt;code&gt;Bool&lt;/code&gt;表示, 用来表示逻辑中的真和假&lt;/p&gt;
+&lt;h4&gt;布尔类型字面量&lt;/h4&gt;
+&lt;p&gt;布尔类型字面量有两个: &lt;code&gt;true&lt;/code&gt; 和 &lt;code&gt;false&lt;/code&gt;。布尔类型的值可以通过逻辑运算符 (如与、或、非) 进行组合和计算&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let a: Bool = true
+let b: Bool = false
+let c: Bool = a &amp;amp;&amp;amp; b
+let d: Bool = a || b
+let e: Bool = !a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;回顾id表达式&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;from std import random.*
+main() {
+    let speed = Random(). nextFloat64() * 20.0
+    println(&quot;${speed} km/s&quot;)
+    println(speed &amp;gt; 16.7)               // true or false
+    if (speed &amp;gt; 16.7) {
+        println(&quot;第三宇宙速度, 鹊桥相会&quot;)
+    } else if (speed &amp;gt; 11.2) {
+        println(&quot;第二宇宙速度, 嫦娥奔月&quot;)
+    } else if (speed &amp;gt; 7.9) {
+        println(&quot;第一宇宙速度, 腾云驾雾&quot;)
+    } else {
+        println(&quot;脚踏实地, 仰望星空&quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;回顾while表达式&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    var num: Int64 = 0
+    while (num &amp;lt;= 10) {
+        println(num)
+        num++
+        println(num &amp;lt;= 10)              // true or false
+    }
+    println(&quot;while执行完毕&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;字符类型&lt;/h3&gt;
+&lt;p&gt;字符类型使用&lt;code&gt;Char&lt;/code&gt;表示, 可以表示 Unicode 字符集中的所有字符。&lt;br /&gt;
+当前, 仓颉已经引入了&lt;code&gt;Rune&lt;/code&gt;, &lt;code&gt;Rune&lt;/code&gt;是&lt;code&gt;Char&lt;/code&gt;的类型别名, 定义为&lt;code&gt;type Rune = Char&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Rune&lt;/code&gt;的语义与&lt;code&gt;Char&lt;/code&gt;相同。目前&lt;code&gt;Rune&lt;/code&gt;与&lt;code&gt;Char&lt;/code&gt;短期共存, 但是将来&lt;code&gt;Char&lt;/code&gt;将会被删除, 建议需要使用字符类型的地方使用&lt;code&gt;Rune&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;温馨提示&lt;/strong&gt;&lt;br /&gt;
+Unicode源于一个很简单的想法: 将全世界所有的字符包含在一个集合里, 计算机只要支持这一个字符集, 就能显示所有的字符, 再也不会有乱码了&lt;/p&gt;
+&lt;h4&gt;字符类型字面量&lt;/h4&gt;
+&lt;p&gt;字符类型字面量有三种形式: 单个字符、转义字符和通用字符, 它们均使用一对单引号定义&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;单个字符&lt;/code&gt;的字符字面量举例:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let a: Rune = &apos;a&apos;
+let b: Rune = &apos;b&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;转义字符&lt;/code&gt;是指在一个字符序列中对后面的字符进行另一种解释的字符。转义字符使用转义符号&lt;code&gt;\&lt;/code&gt;开头, 后面加需要转义的字符。 举例如下:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let slash: Rune = &apos;\\&apos;
+let newline: Rune = &apos;\n&apos;
+let tab: Rune = &apos;\t&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;通用字符&lt;/code&gt;以&lt;code&gt;\u&lt;/code&gt;开头, 后面加上定义在一对花括号&lt;code&gt;{}&lt;/code&gt;中的 1~8个十六进制数, 即可表示对应的 Unicode 值代表的字符。 举例如下:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let a: Rune = &apos;\u{4E2D}&apos; // 中
+    let b: Rune = &apos;\u{534E}&apos; // 华
+    let c: Rune = &apos;\u{6C11}&apos; // 民
+    let d: Rune = &apos;\u{65CF}&apos; // 族
+    let result: String = String(a) + String(b) + String(c) + String(d)
+    print(result)
+}
+// result: 中华民族
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;字符串类型&lt;/h3&gt;
+&lt;p&gt;字符串类型使用&lt;code&gt;String&lt;/code&gt;表示, 用于表达文本数据, 由一串 Unicode 字符组合而成&lt;/p&gt;
+&lt;h4&gt;字符串类型字面量&lt;/h4&gt;
+&lt;p&gt;字符串字面量分为三类: 单行字符串字面量、多行字符串字面量、多行原始字符串字面量&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;单行字符串字面量&lt;/code&gt; 的内容定义在一对双引号之内&lt;code&gt;&quot;&quot;&lt;/code&gt;, 双引号中的内容可以是任意数量的 (除了非转义的双引号和单独出现的&lt;code&gt;\&lt;/code&gt;之外的) 任意字符。单行字符串字面量只能写在同一行,不能跨多行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let s1: String = &quot;&quot;
+let s2 = &quot;Hello Cangjie Lang&quot;
+let s3 = &quot;\&quot;Hello Cangjie Lang\&quot;&quot;
+let s4 = &quot;Hello Cangjie Lang\n&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;多行字符串字面量&lt;/code&gt; 以三个双引号开头&lt;code&gt;&quot;&quot;&quot;&lt;/code&gt;, 并以三个双引号结尾&lt;code&gt;&quot;&quot;&quot;&lt;/code&gt;,并且开头的三个双引号之后需要换行(否则编译错误)。字面量的内容从开头的三个双引号换行后的第一行开始, 到结尾的三个双引号之前结束, 之前的内容可以是任意数量的(除单个出现的&lt;code&gt;\&lt;/code&gt;之外的) 任意字符。不同于单行字符串字面量, 多行字符串字面量可以跨多行。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let s1: String = &quot;&quot;&quot;
+&quot;&quot;&quot;
+let s2 = &quot;&quot;&quot;
+    Hello,
+    Cangjie Lang&quot;&quot;&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;多行原始字符串字面量&lt;/code&gt; 以一个或多个井号&lt;code&gt;#&lt;/code&gt; 加上一个双引号开始, 并以一个双引号加上和开始相同个数的&lt;code&gt;#&lt;/code&gt;结束。开始的双引号和结束的双引号之间的内容可以是任意数量的任意合法字符。不同于 (普通) 多行字符串字面量, 多行原始字符串字面量中的内容会维持原样 (转义字符不会被转义, 如下例中 s2 中的 \n 不是换行符, 而是由 \ 和 n 组成的字符串 \n)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let s1: String = #&quot;&quot;#
+let s2 = ##&quot;\n&quot;##
+let s3 = ###&quot;
+    Hello,
+    Canjie
+    Lang&quot;###
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;插值字符串&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;插值字符串&lt;/code&gt;是一种包含一个或多个插值表达式的字符串字面量 (不适用于多行原始字符串字面量), 通过将表达式插入到字符串中, 可以有效避免字符串拼接的问题。&lt;/p&gt;
+&lt;p&gt;插值表达式必须用花括号&lt;code&gt;{}&lt;/code&gt;包起来, 并在花括号前加上美元符号&lt;code&gt;$&lt;/code&gt;, 例如&lt;code&gt;&quot;${expression}&quot;&lt;/code&gt;。&lt;code&gt;{}&lt;/code&gt;中可以包含一个或者多个声明或表达式&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let fruit = &quot;apples&quot;
+    let count = 10
+    let s = &quot;There are ${count * count} ${fruit}&quot;
+    println(s)  // There are 100 apples
+    
+    let r = 2.4
+    let area = &quot;There area of a circle with redius ${r} is ${let pi = 3.14; pi * r * r}&quot;
+    println(area) // There area of a circle with redius 2.400000 is 18.086400
+}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;更多资源搜索&lt;/h2&gt;
 &lt;ul&gt;
