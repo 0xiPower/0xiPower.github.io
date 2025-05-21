@@ -490,7 +490,7 @@ let c: Bool = a &amp;amp;&amp;amp; b
 let d: Bool = a || b
 let e: Bool = !a
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4&gt;回顾id表达式&lt;/h4&gt;
+&lt;h4&gt;回顾if表达式&lt;/h4&gt;
 &lt;pre&gt;&lt;code&gt;from std import random.*
 main() {
     let speed = Random(). nextFloat64() * 20.0
@@ -583,6 +583,87 @@ let s3 = ###&quot;
     let r = 2.4
     let area = &quot;There area of a circle with redius ${r} is ${let pi = 3.14; pi * r * r}&quot;
     println(area) // There area of a circle with redius 2.400000 is 18.086400
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;数组类型&lt;/h3&gt;
+&lt;p&gt;使用&lt;code&gt;Array&lt;/code&gt;类型来构造单一元素类型, 有序序列的数据&lt;br /&gt;
+仓颉使用Array&amp;lt;T&amp;gt;来表示Array类型。T 表示 Array 的元素类型, T 可以是任意类型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var a: Array&amp;lt;Int64&amp;gt; = ... // Array whose element type is Int64
+var b: Array&amp;lt;String&amp;gt; = ... // Array whose element type is String
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;元素类型不相同的 Array 是不相同的类型, 所有它们之间不可以互相赋值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;b = a // Type mismatch error
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以使用字面量来初始化一个 Array, 只需使用方括号将逗号分隔的值列表括起来即可&lt;br /&gt;
+编译器会根据上下文自动推断 Array 字面量的类型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let b = [1, 2, 3, 4, 5]     // Array&amp;lt;Int64&amp;gt;
+let c = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]     // Array&amp;lt;String&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;也可以使用构造函数的方式构造一个指定元素类型的 Array&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let c = Array&amp;lt;Int64&amp;gt;(3, item: 0) // [0, 0, 0]
+let d = Array&amp;lt;Int64&amp;gt;(3, {i =&amp;gt; i + 1}) // [1, 2, 3]
+
+⬆ `3` 表示 Array 的长度, `item` 表示 Array 中的每个元素的初始值, 也可以使用闭包来初始化 Array 中的每个元素
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;访问 Array 成员&lt;/h4&gt;
+&lt;p&gt;当需要对 Array 的所有元素进行访问时, 可以使用 for-in 表达式遍历 Array 的所有元素&lt;br /&gt;
+Array 是按元素插入顺序排列的, 因此对 Array 遍历的顺序总是恒定的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let arr = [0, 1, 2]
+    for (i in arr) {
+        println(&quot;The element is ${i}&quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当需要知道某个 Array 包含的元素个数时, 可以使用 size 属性来获取。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let arr = [0, 1, 2]
+    println(&quot;The size of the array is ${arr.size}&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;注意: &lt;s&gt;属性不用( )&lt;/s&gt;, 方法要用( )&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当需要访问 Array 中的某个元素时, 可以使用下标运算符&lt;code&gt;[]&lt;/code&gt;来访问&lt;br /&gt;
+非空 Array 的第一个元素总是从位置 0 开始&lt;br /&gt;
+索引值不能使用&lt;code&gt;负数&lt;/code&gt;或者大于等于 Array 的长度, 当编译器能检查出索引值非法时, 会在编译时报错, 否则会在运行时抛异常。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let arr = [0, 1, 2]
+    let a = arr[0]  // 0
+    let b = arr[1]  // 1
+    println(&quot;The first element is ${a}&quot;)
+    println(&quot;The second element is ${b}&quot;)
+    let c = arr[-1] // error: index out of range
+    println(&quot;The last element is ${c}&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果想获取某一段 Array 的元素, 可以在下标中传入 Range 类型的值, 就可以一次性取得 Range 对应范围的一段 Array&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let arr1 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+let arr2 = arr1[1..3]   // [20, 30]
+let arr3 = arr1[4..=7]  // [50, 60, 70, 80]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;修改 Array&lt;/h4&gt;
+&lt;p&gt;Array 是一种长度不变的 Collection 类型, 因此 Array 没有提供添加和删除元素的成员函数&lt;br /&gt;
+但 Array 允许对其中的元素进行修改&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let arr = [0, 1, 2]
+    arr[0] = 10
+    println(arr[0])  // 10
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Array 是引用类型, 因此 Array 在作为表达式使用时不会拷贝副本, 同一个 Array 实例的所有引用都会共享同样的数据。&lt;br /&gt;
+因此对 Array 元素的修改会影响到该实例的所有引用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    let arr1 = [0, 1, 2]
+    let arr2 = arr1
+    arr2[0] = 10
+    println(arr1) // [10, 1, 2]
+    println(arr2) // [10, 1, 2]
+
+    // ⬇ 值传递类型
+    var msg1 = 100
+    var msg2 = msg1
+    msg1 = 200
+    println(msg1) // 200
+    println(msg2) // 100
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;更多资源搜索&lt;/h2&gt;
