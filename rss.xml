@@ -1058,6 +1058,115 @@ main() {
 let f: (Int64, Int64) -&amp;gt; Int64 = add
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;嵌套函数&lt;/h3&gt;
+&lt;p&gt;定义在源文件顶层的函数被称为全局函数。定义在函数体内的函数被称为嵌套函数&lt;/p&gt;
+&lt;p&gt;👇示例, 函数&lt;code&gt;foo&lt;/code&gt;内定义了一个嵌套函数&lt;code&gt;nestAdd&lt;/code&gt;, 可以在&lt;code&gt;foo&lt;/code&gt;内调用该嵌套函数&lt;code&gt;nestAdd&lt;/code&gt;, 也可以将嵌套函数&lt;code&gt;nestAdd&lt;/code&gt;作为返回值返回, 在&lt;code&gt;foo&lt;/code&gt;外对其进行调用:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func foo() {
+    func nestAdd(a: Int64, b: Int64): Unit{
+        a + b + 3
+    }
+    println(nestAdd(1, 2)) // 6
+    return nestAdd
+}
+
+main() {
+    let f = foo()
+    let x = f(1, 2)
+    println(&quot;result: ${x}&quot;) // 6
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Lambda 表达式&lt;/h3&gt;
+&lt;h4&gt;Lambda 表达式定义&lt;/h4&gt;
+&lt;p&gt;Lambda 表达式的语法形式: &lt;code&gt;{p1: T1, ..., pn:Tn =&amp;gt; expressions | declarations}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;其中, &lt;code&gt;=&amp;gt;&lt;/code&gt;之前为参数列表, 多个参数之间使用&lt;code&gt;,&lt;/code&gt;分隔, 每个参数名和参数类型之间使用&lt;code&gt;:&lt;/code&gt;分隔。&lt;code&gt;=&amp;gt;&lt;/code&gt;之前也可以没有参数。&lt;code&gt;=&amp;gt;&lt;/code&gt;之后为 Lambda 表达式体, 是一组表达式或声明序列&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let f1 = { a: Int64, b: Int64 =&amp;gt; a + b }
+var display = { =&amp;gt; println(&quot;Hello&quot;) }   // Parameterless Lambda
+
+main() {
+    println(f1(10, 20))  // 30
+    display()            // Hello
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lambda 表达式中参数的类型标注可缺省。以下情形中, 若参数类型省略, 编译器会尝试进行类型推断&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lambda 表达式赋值给变量时, 其参数类型根据变量类型推断&lt;/li&gt;
+&lt;li&gt;Lambda 表达式作为函数调用表达式的实参使用时, 其参数类型根据函数的形参类型推断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;var sum: (Int64, Int64) -&amp;gt; Int64 = { a, b =&amp;gt; a + b }
+
+func f(fn: (Int64) -&amp;gt; Int64): Int64{
+    fn(1)
+}
+
+main() {
+    println(sum(10, 20))            // 30
+    println(f({ num =&amp;gt; num + 10 })) // 11
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Lambda 表达式声明&lt;/h4&gt;
+&lt;p&gt;Lambda 表达式支持立即调用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let r1 = { a: Int64, b: Int64 =&amp;gt; a + b }(1, 2)
+let r2 = { =&amp;gt; 123}()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lambda 表达式也可以赋值给一个变量, 使用变量名进行调用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func f() {
+    var g = { x: Int64 =&amp;gt; println(&quot;x = ${x}&quot;) }
+    g(2)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;闭包&lt;/h3&gt;
+&lt;p&gt;一个函数或 Lambda 从定义它的静态作用域中捕获了变量, 函数或 Lambda 和捕获的变量一起被称为一个闭包, 这样即使脱离了闭包定义所在的作用域, 闭包也能正常运行&lt;/p&gt;
+&lt;p&gt;示例1: 闭包&lt;code&gt;add&lt;/code&gt;, 捕获了&lt;code&gt;let&lt;/code&gt;声明的局部变量&lt;code&gt;num&lt;/code&gt;, 之后通过返回值返回到&lt;code&gt;num&lt;/code&gt;定义的作用域之外, 调用&lt;code&gt;add&lt;/code&gt;时仍可正常访问&lt;code&gt;num&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func returnAddNum(): (Int64) -&amp;gt; Int64 {
+    let num: Int64 = 10
+    func add(a: Int64) {
+        return a + num
+    }
+    add
+}
+
+main() {
+    let f = returnAddNum()
+    println(f(10)) // 20
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;示例2: 捕获的变量必须在闭包定义时可见&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func f() {
+    let x = 99
+    func f1() {
+        println(x)
+    }
+    let f2 = { =&amp;gt; 
+        println(y) // error: cannot capture &apos;y&apos; which is not in scope
+    }
+    let y = 100
+    f1()           // Print 99.
+    f2()
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;示例3: 捕获的变量必须在闭包定义前完成初始化&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func f() {
+    let x: Int64
+    func f1() {
+        println(x) // Error: x is not initialized yet.
+    }
+    x = 99
+    f1()
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;需要注意的是, 捕获具有传递性, 如果一个函数&lt;code&gt;f&lt;/code&gt;调用了捕获&lt;code&gt;var&lt;/code&gt;变量的函数&lt;code&gt;g&lt;/code&gt;, 且存在&lt;code&gt;g&lt;/code&gt;捕获的&lt;code&gt;var&lt;/code&gt;变量不在函数&lt;code&gt;f&lt;/code&gt;内定义, 那么函数&lt;code&gt;f&lt;/code&gt;同样捕获了&lt;code&gt;var&lt;/code&gt;变量, 此时, &lt;code&gt;f&lt;/code&gt;也不能作为一等公民使用&lt;/p&gt;
+&lt;p&gt;👇示例, &lt;code&gt;g&lt;/code&gt;捕获了&lt;code&gt;var&lt;/code&gt;声明的变量&lt;code&gt;x&lt;/code&gt;, &lt;code&gt;f&lt;/code&gt;调用了&lt;code&gt;g&lt;/code&gt;, 且&lt;code&gt;g&lt;/code&gt;捕获的&lt;code&gt;x&lt;/code&gt;不在&lt;code&gt;f&lt;/code&gt;内定义, &lt;code&gt;f&lt;/code&gt;同样不能作为一等公民使用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func h(): Unit{
+    var x = 1
+    
+    func g() { x }  // captured a mutable variable
+    
+    func f() {
+        g()         // invoked g
+    }
+    
+    return f        // error
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;更多资源搜索&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://cangjie-lang.cn&quot;&gt;仓颉编程语言官网&lt;/a&gt;&lt;/li&gt;
