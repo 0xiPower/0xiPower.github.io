@@ -901,6 +901,163 @@ main() {
 1 / 2 = 0   余数1
 得到的余数逆序排列就是10的二进制数: 1010
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;函数&lt;/h2&gt;
+&lt;h3&gt;定义函数&lt;/h3&gt;
+&lt;p&gt;仓颉使用关键字&lt;code&gt;func&lt;/code&gt;来表示函数定义的开始, &lt;code&gt;func&lt;/code&gt;之后依次是函数名、参数列表、可选的函数返回值类型、函数体。其中, 函数名可以是任意的合法标识符, 参数列表定义在一对圆括号内(多个参数间使用逗号分隔), 参数列表和函数返回值类型(如果存在)之间使用冒号间隔, 函数体定义在一对花括号内。&lt;/p&gt;
+&lt;p&gt;func add(a: Int64, b: Int64): Int64 {
+return a + b
+}
+↑ 上例中定义了一个名为&lt;code&gt;add&lt;/code&gt;的函数, 其参数列表由两个&lt;code&gt;Int64&lt;/code&gt;类型的参数&lt;code&gt;a&lt;/code&gt;和&lt;code&gt;b&lt;/code&gt;组成, 函数返回值类型为&lt;code&gt;Int64&lt;/code&gt;, 函数体中使用&lt;code&gt;return&lt;/code&gt;语句返回两个参数的和&lt;/p&gt;
+&lt;h4&gt;函数调用&lt;/h4&gt;
+&lt;p&gt;函数调用的形式为&lt;code&gt;funcName(arg1, arg2, ..., argn)&lt;/code&gt;。其中, &lt;code&gt;funcName&lt;/code&gt;是要调用的函数名, &lt;code&gt;arg1&lt;/code&gt; ~ &lt;code&gt;argn&lt;/code&gt;是n个调用时的参数(称为实参), 要求每个实参的类型必须是对应参数类型的子类型。实参可以有0个或多个, 当实参个数为0时, 调用方式为&lt;code&gt;funcName()&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;参数列表&lt;/h4&gt;
+&lt;p&gt;一个函数可以拥有0个或多个参数, 这些参数均定义在函数的参数列表中。根据函数调用时是否需要给定参数名, 可以将参数列表中的参数分为两类: &lt;code&gt;非命名参数&lt;/code&gt;和&lt;code&gt;命名参数&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;非命名参数的定义方式是&lt;code&gt;p:T&lt;/code&gt;, 其中&lt;code&gt;p&lt;/code&gt;是参数名, &lt;code&gt;T&lt;/code&gt;是参数&lt;code&gt;p&lt;/code&gt;的类型, 参数名和其类型间使用冒号链接。例如, 上例中&lt;code&gt;add&lt;/code&gt;函数的两个参数&lt;code&gt;a&lt;/code&gt;和&lt;code&gt;b&lt;/code&gt;均为非命名参数&lt;/p&gt;
+&lt;p&gt;命名参数的定义方式是&lt;code&gt;p!:T&lt;/code&gt;, 与非命名参数的不同是在参数名&lt;code&gt;p&lt;/code&gt;之后多了一个&lt;code&gt;!&lt;/code&gt;。可以将上例中&lt;code&gt;add&lt;/code&gt;函数的两个非命名参数修改为命名参数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(a!: Int64, b!: Int64): Int64 {
+    return a + b
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;命名参数还可以设置默认值, 通过&lt;code&gt;p!:T = e&lt;/code&gt;方式将参数&lt;code&gt;p&lt;/code&gt;的默认值设置为表达式&lt;code&gt;e&lt;/code&gt;的值。&lt;br /&gt;
+例如, 可以将上述&lt;code&gt;add&lt;/code&gt;函数的两个参数的默认值都设置为&lt;code&gt;1&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(a!: Int64 = 1, b!: Int64 = 1): Int64 {
+    return a + b
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;非命名参数和命名参数的主要差异在于调用时的不同&lt;/p&gt;
+&lt;p&gt;根据函数定义时参数是非命名参数还是命名参数的不同, 函数调用时传实参的方式也有所不同: 对于非命名参数, 它对应的实参是一个表达式, 对于命名参数, 它对应的实参需要使用&lt;code&gt;p:e&lt;/code&gt;的形式, 其中&lt;code&gt;p&lt;/code&gt;是命名参数的名字, &lt;code&gt;e&lt;/code&gt;是表达式(即传递给参数&lt;code&gt;p&lt;/code&gt;的值)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(a!: Int64 = 1, b!: Int64 = 1): Int64 {
+    return a + b
+}
+add(a:10, b:20)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;函数参数均为不可变变量, 在函数定义内不能对其赋值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(a: Int64, b: Int64): Int64 {
+    a = a + b // error: cannot assign to immutable value
+    return a
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;返回值&lt;/h3&gt;
+&lt;h4&gt;函数返回值类型&lt;/h4&gt;
+&lt;p&gt;函数返回值类型是函数被调用后得到的值的类型, 函数定义时, 返回值类型是可选的: 可以显式地定义返回值类型(返回值类型定义在参数列表和函数体之间), 也可以不定义返回值类型, 交由编译器推导确定&lt;/p&gt;
+&lt;p&gt;当显式地定义了函数返回值类型时, 就要求函数体的类型、函数体中所有&lt;code&gt;return e&lt;/code&gt;表达式中&lt;code&gt;e&lt;/code&gt;的类型是返回值类型的子类型。&lt;br /&gt;
+例如, 对于上述&lt;code&gt;add&lt;/code&gt;函数, 显示地定义了它的返回值类型为&lt;code&gt;Int64&lt;/code&gt;, 如果将函数体中地&lt;code&gt;return a + b&lt;/code&gt;修改为&lt;code&gt;return (a, b)&lt;/code&gt;, 则会因为类型不匹配而报错&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// Error: the type of the expression after return does not match the return type of the function
+func add(a: Int64, b: Int64): Int64 {
+    return (a, b)   // error: type mismatch
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在函数定义时如果未显式定义返回值类型, 编译器将根据函数体的类型以及函数体中所有地&lt;code&gt;return&lt;/code&gt;表达式来共同推导出函数的返回值类型。&lt;br /&gt;
+例如, 下列&lt;code&gt;add&lt;/code&gt;函数的返回值类型虽然被省略, 但编译器可以根据&lt;code&gt;return a + b&lt;/code&gt;推导出&lt;code&gt;add&lt;/code&gt;函数的返回值类型是&lt;code&gt;Int64&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(a: Int64, b: Int64) {
+    return a + b    // return type is Int64
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;提示&lt;/strong&gt;&lt;br /&gt;
+函数的返回值类型并不是任何情况下都可以被推导出来的, 如果返回值类型推导失败, 编译报错&lt;/p&gt;
+&lt;h4&gt;函数体&lt;/h4&gt;
+&lt;p&gt;函数体中定义了函数被调用时执行的操作, 通常包含一系列的变量定义和表达式, 也可以包含新的函数定义(即嵌套函数)。&lt;br /&gt;
+如下&lt;code&gt;add&lt;/code&gt;函数的函数体中首先定义了&lt;code&gt;Int64&lt;/code&gt;类型的变量&lt;code&gt;r&lt;/code&gt;(初始值为0), 接着将&lt;code&gt;a + b&lt;/code&gt;的值赋于&lt;code&gt;r&lt;/code&gt;, 最后返回&lt;code&gt;r&lt;/code&gt;的值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(a: Int64, b: Int64): Int64 {
+    var r: Int64 = 0
+    r = a + b
+    return r
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在函数体的任意位置都可以使用&lt;code&gt;return&lt;/code&gt;表达式来终止函数的执行并返回。&lt;code&gt;return&lt;/code&gt;表达式有两种形式:&lt;code&gt;return&lt;/code&gt;和&lt;code&gt;return expr&lt;/code&gt;( expr 是一种表达式)&lt;/p&gt;
+&lt;p&gt;对于&lt;code&gt;return expr&lt;/code&gt;, 要求&lt;code&gt;expr&lt;/code&gt;的类型与函数定义的返回值类型保持一致。&lt;br /&gt;
+例如, 下例中会因为&lt;code&gt;return 100&lt;/code&gt;中&lt;code&gt;100&lt;/code&gt;类型(&lt;code&gt;Int64&lt;/code&gt;)和函数&lt;code&gt;foo&lt;/code&gt;的返回值类型&lt;code&gt;String&lt;/code&gt;不同而报错&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// Error: the type of the expression after return does not match the return type of the function
+func foo(): String {
+    return 100 // error: type mismatch
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;对于&lt;code&gt;return&lt;/code&gt;, 其等价于&lt;code&gt;return ()&lt;/code&gt;, 所以函数的返回值类型为&lt;code&gt;Uint&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(a: Int64, b: Int64) {
+    var r = 0
+    r = a + b
+    return r
+}
+
+func foo(): Unit{
+    add(1, 2)
+    return
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;提示&lt;/strong&gt;&lt;br /&gt;
+&lt;code&gt;return&lt;/code&gt;表达式作为一个整体, 其类型并不由后面跟随的表达式决定, 而是 Nothing 类型&lt;/p&gt;
+&lt;p&gt;在函数体内定义的变量属于局部变量的一种, 它的作用域从其定义之后开始到函数体结束&lt;/p&gt;
+&lt;p&gt;对于一个局部变量, 允许在其外层作用域中定义同名变量, 并且在此局部变量的作用域内, 局部变量会&quot;遮盖&quot;外层作用域的同名变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let r = 0
+func add(a: Int64, b: Int64) {
+    var r = 0
+    r = a + b
+    return r
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;👆上例, &lt;code&gt;add&lt;/code&gt;函数之前定义了&lt;code&gt;Int64&lt;/code&gt;类型的全局变量&lt;code&gt;r&lt;/code&gt;, 同时&lt;code&gt;add&lt;/code&gt;函数体内定义了同名的局部变量&lt;code&gt;r&lt;/code&gt;, 那么在函数体内, 所有使用变量&lt;code&gt;r&lt;/code&gt;的地方(如&lt;code&gt;r = a + b&lt;/code&gt;), 用到的将是局部变量&lt;code&gt;r&lt;/code&gt;, 即(在函数体内)局部变量&lt;code&gt;r&lt;/code&gt;&quot;遮盖&quot;了全局变量&lt;code&gt;r&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;函数体也是有类型的, 函数体的类型是函数体内最后一&quot;项&quot;的类型: 若最后一项为表达式, 则函数体的类型是此表达式的类型, 若最后一项为变量定义或函数声明, 或函数体为空, 则函数体的类型为 &lt;code&gt;Unit&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;👆上例, 因为函数体的最后一&quot;项&quot;是&lt;code&gt;Int64&lt;/code&gt;类型的表达式(即&lt;code&gt;a + b&lt;/code&gt;), 所以函数体的类型也是&lt;code&gt;Int64&lt;/code&gt;, 与函数定义的返回值类型相匹配。&lt;br /&gt;
+又如, 下例函数体的最后一项是&lt;code&gt;print&lt;/code&gt;函数调用, 所以函数体的类型是&lt;code&gt;Unit&lt;/code&gt;, 同样与函数定义的返回值类型相匹配&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func foo(): Unit{
+    let s = &quot;Hello&quot;
+    println(s)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;一等公民&lt;/h3&gt;
+&lt;p&gt;仓颉编程语言中, 函数是一等公民(first-class citizens), 可以作为函数的参数或返回值, 也可以赋值给变量。因此函数本身也有类型, 称为函数类型&lt;/p&gt;
+&lt;h4&gt;函数类型&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;函数类型&lt;/code&gt;由函数的参数类型和返回类型组成, 参数类型和返回类型之间使用&lt;code&gt;-&amp;gt;&lt;/code&gt;连接。参数类型使用圆括号&lt;code&gt;()&lt;/code&gt;括起来, 可以有0个或多个参数, 如果参数超过两个, 参数类型之间使用逗号&lt;code&gt;,&lt;/code&gt;分隔&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func hello(): Unit{
+    println(&quot;Hello!&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;👆示例定义了一个函数, 函数名为hello, 其类型是&lt;code&gt;()-&amp;gt;Unit&lt;/code&gt;,表示该函数没有参数, 返回类型为&lt;code&gt;Unit&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;👆函数名为&lt;code&gt;add&lt;/code&gt;, 其类型是&lt;code&gt;(Int64, Int64) -&amp;gt; Int64&lt;/code&gt;, 表示该函数有两个参数, 两个参数类型均为&lt;code&gt;Int64&lt;/code&gt;, 返回类型为&lt;code&gt;Int64&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;函数类型作为参数类型&lt;/h4&gt;
+&lt;p&gt;示例: 函数名为&lt;code&gt;printAdd&lt;/code&gt;, 其类型是&lt;code&gt;((Int64, Int64) -&amp;gt; Int64, Int64, Int64) -&amp;gt; Unit&lt;/code&gt;, 表示该函数有三个参数, 参数类型分别为函数类型&lt;code&gt;(Int64, Int64) -&amp;gt; Int64&lt;/code&gt;和两个&lt;code&gt;Int64&lt;/code&gt;, 返回类型为&lt;code&gt;Unit&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func printAdd(add: (Int64, Int64) -&amp;gt; Int64, a: Int64, b: Int64 ): Unit {
+    println(add(a, b))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;func demo(x: Int64, y: Int64): Int64{
+    return x * y
+}
+main() {
+    printAdd(demo, 10, 10)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;函数类型作为返回类型&lt;/h4&gt;
+&lt;p&gt;函数类型可以作为另一个函数的返回类型
+👇示例, 函数名为&lt;code&gt;returnAdd&lt;/code&gt;, 其类型是&lt;code&gt;() -&amp;gt; (Int64, Int64) -&amp;gt; Int64&lt;/code&gt;, 表示该函数无参数, 返回类型为函数类型&lt;code&gt;(Int64, Int64) -&amp;gt; Int64&lt;/code&gt;。注意,&lt;code&gt;-&amp;gt;&lt;/code&gt;是右结合的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(a: Int64, b: Int64): Int64 {
+    return a + b
+}
+func returnAdd(): (Int64, Int64) -&amp;gt; Int64 {
+    add
+}
+main() {
+    var a = returnAdd()
+    println(a(1, 2)) // 3
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;函数类型作为变量类型&lt;/h4&gt;
+&lt;p&gt;函数名本身也是表达式, 它的类型为对应的函数类型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func add(p1: Int64, p2: Int64): Int64 {
+    p1 + p2
+}
+
+let f: (Int64, Int64) -&amp;gt; Int64 = add
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;嵌套函数&lt;/h3&gt;
 &lt;h2&gt;更多资源搜索&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://cangjie-lang.cn&quot;&gt;仓颉编程语言官网&lt;/a&gt;&lt;/li&gt;
