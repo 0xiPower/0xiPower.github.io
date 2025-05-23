@@ -753,6 +753,154 @@ let y: (Int64, Float64, String) = (2, 3.14159, &quot;PI&quot;)
 &lt;p&gt;&lt;code&gt;break&lt;/code&gt;、&lt;code&gt;continue&lt;/code&gt;、&lt;code&gt;return&lt;/code&gt;、&lt;code&gt;throw&lt;/code&gt;表达式的类型是&lt;code&gt;Nothing&lt;/code&gt;, 程序执行到这些表达式时, 它们之后的代码将不会被执行。其中&lt;code&gt;break&lt;/code&gt;、&lt;code&gt;continue&lt;/code&gt;只能在循环体中使用, &lt;code&gt;return&lt;/code&gt;只能在函数体中使用&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;br /&gt;
 目前编译器还不允许在使用类型的地方显式使用&lt;code&gt;Nothing&lt;/code&gt;类型, 例如: &lt;code&gt;let a: Nothing = ()&lt;/code&gt;会报错, 但是可以在函数返回值的地方使用&lt;code&gt;Nothing&lt;/code&gt;类型, 例如: &lt;code&gt;return break&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;运算符&lt;/h2&gt;
+&lt;h3&gt;算术运算符&lt;/h3&gt;
+&lt;p&gt;算术运算符包含&quot;加、减、乘、除、取余、自增和自减&quot;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    var add: Int64
+    var x = 10
+    var y = 20
+    add = x + y
+    println(&quot;x + y = ${add}&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;余数运算符&lt;/h4&gt;
+&lt;p&gt;余数运算符是比较常用的, 因为在逻辑思维上寻找规律, 余数运算符是很好用的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    var result: Int64
+    var x = 101
+    var y = 5
+    result = x % y
+    println(&quot;x % y = ${result}&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;自增和自减运算符&lt;/h4&gt;
+&lt;p&gt;自增和自减运算符, 是一元运算符, 只需一个运算子。它们的作用是将运算子首先转为数值, 然后加上1或减去1&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    var x = 10
+    var y = 20
+    x++
+    y--
+    println(&quot;x++ = ${x}&quot;) // 11
+    println(&quot;y-- = ${y}&quot;) // 19
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;赋值运算符&lt;/h3&gt;
+&lt;p&gt;赋值运算符(Assignment Operators)用于给变量赋值&lt;/p&gt;
+&lt;p&gt;最常见的赋值运算符, 是&lt;code&gt;=&lt;/code&gt;运算符, 它将右侧的值赋给左侧的变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;main() {
+    var x = 10
+    var y = x
+    println(&quot;y = ${y}&quot;)  // 10
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;复合赋值运算符&lt;/h4&gt;
+&lt;p&gt;赋值运算符还可以与其他运算符结合, 形成变体。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;x += 1      // x = x + 1
+x -= 1      // x = x - 1
+x *= 2      // x = x * 2
+x /= 2      // x = x / 2
+x %= 2      // x = x % 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;比较运算符&lt;/h3&gt;
+&lt;p&gt;比较运算符用于比较两个值的大小, 返回布尔值&lt;code&gt;true&lt;/code&gt;或&lt;code&gt;false&lt;/code&gt;, 表示是否满足指定的条件&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;比较运算符&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;lt;&lt;/td&gt;
+&lt;td&gt;小于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;gt;&lt;/td&gt;
+&lt;td&gt;大于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;lt;=&lt;/td&gt;
+&lt;td&gt;小于等于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;gt;=&lt;/td&gt;
+&lt;td&gt;大于等于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;==&lt;/td&gt;
+&lt;td&gt;判等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;!=&lt;/td&gt;
+&lt;td&gt;判不等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code&gt;from std import random.*
+main() {
+    let number: Int8 = Random().nextInt8()
+    if (number % 2 == 0){
+        println(&quot;even&quot;)
+    } else {
+        println(&quot;odd&quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;布尔运算符&lt;/h3&gt;
+&lt;p&gt;常用的布尔运算符有&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;(与)、&lt;code&gt;||&lt;/code&gt;(或)、&lt;code&gt;!&lt;/code&gt;(非)&lt;/p&gt;
+&lt;h4&gt;取反运算符 (&lt;code&gt;!&lt;/code&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;!true // false
+!false // true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;与运算符 (&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;)&lt;/h4&gt;
+&lt;p&gt;多个条件都要满足&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (10 &amp;lt; 20 &amp;amp;&amp;amp; 10 &amp;gt; 5) {
+    println(&quot;Yes&quot;)
+} else {
+    println(&quot;No&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;或运算符 (&lt;code&gt;||&lt;/code&gt;)&lt;/h4&gt;
+&lt;p&gt;只要有一个条件满足即可&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (10 &amp;lt; 20 || 10 &amp;gt; 5) {
+    println(&quot;Yes&quot;)
+} else {
+    println(&quot;No&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;位运算符&lt;/h3&gt;
+&lt;p&gt;位运算符直接处理每一个比特位(bit), 是非常底层的运算, 好处是速度极快, 缺点是很不直观, 许多场合不能使用它们, 否则会使代码难以理解和查错&lt;/p&gt;
+&lt;h4&gt;快速计算位移方案 &lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;左移运算符就是*2的n次方 (n代表位移次数)&lt;/li&gt;
+&lt;li&gt;右移运算符就是/2的n次方 (n代表位移次数, 不同点, 出现小数时要取整)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;位运算演算过程&lt;/h4&gt;
+&lt;h5&gt;字长&lt;/h5&gt;
+&lt;p&gt;计算机的每个字包含的位数称为字长, 也称在&lt;code&gt;同一时间中CPU一次操作处理二进制的位数&lt;/code&gt;。大型计算机的字长为32-64位, 小型计算机为12-32位, 而微型计算机为4-16位。字长是衡量计算机性能的一个重要因素。现代计算机一般64位, 字长就是64位。&lt;/p&gt;
+&lt;h5&gt;左移运算符 &amp;lt;&amp;lt;&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;5 &amp;lt;&amp;lt; 2  // 20
+↓
+0000 0000 0000 0000 0000 0000 0000 0101 // 5
+0000 0000 0000 0000 0000 0000 0001 0100 // 20 左移2位
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;右移运算符 &amp;gt;&amp;gt;&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;1000 &amp;gt;&amp;gt; 8  // 3
+↓
+0000 0000 0000 0000 0000 0011 1110 1000 // 1000
+0000 0000 0000 0000 0000 0000 0000 0011 // 3 右移8位
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;十进制转为二进制&lt;/h3&gt;
+&lt;p&gt;采用&quot;除2取余, 逆序排列&quot;的方法&lt;br /&gt;
+例如: 10转为二进制&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;10 / 2 = 5  余数0
+5 / 2 = 2   余数1
+2 / 2 = 1   余数0
+1 / 2 = 0   余数1
+得到的余数逆序排列就是10的二进制数: 1010
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;更多资源搜索&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://cangjie-lang.cn&quot;&gt;仓颉编程语言官网&lt;/a&gt;&lt;/li&gt;
